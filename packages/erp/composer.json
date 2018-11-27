@@ -1,15 +1,15 @@
 {
     "name": "erp/connect",
     "description": "for work faster",
+    "require": {
+        "guzzlehttp/guzzle": "~6.0"
+    },
     "authors": [
         {
             "name": "lipu",
             "email": "pu_li@loongjoy.com"
         }
     ],
-    "require": {
-        "guzzlehttp/guzzle": "~6.0"
-    },
     "autoload": {
         "psr-4": {
             "ErpConnect\\": "packages/erp/src"
