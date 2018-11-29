@@ -12,7 +12,7 @@ class ErpServiceProvider extends ServiceProvider
      *
      * @var bool
      */
-    protected $defer = true; // 延迟加载服务
+    protected $defer = false; // 延迟加载服务
 
 
     /**

@@ -3,6 +3,7 @@
 namespace ErpConnect;
 
 use Illuminate\Config\Repository;
+use GuzzleHttp\Client;
 
 class Erp {
 
@@ -48,6 +49,35 @@ class Erp {
     protected $to_account;
 
     /**
+     * 获取token的url code
+     * @var
+     */
+    protected $token_code;
+
+    /**
+     * 路径code
+     * @var
+     */
+    protected $url_code;
+
+    /**
+     * 请求路径
+     * @var
+     */
+    protected $request_url;
+
+    /**
+     * 数据包
+     * @var
+     */
+    protected $data;
+
+    /**
+     * token
+     * @var
+     */
+    protected $token;
+    /**
      * Erp constructor.
      * @param Repository $repository
      */
@@ -68,17 +98,33 @@ class Erp {
         $this->erp_secret = $this->config->get('erpconnect.ERP_AppSecret');
         $this->from_account = $this->config->get('erpconnect.FROM_ACCOUNT');
         $this->to_account = $this->config->get('erpconnect.TO_ACCOUNT');
+        $this->token_code =  $this->config->get('erpconnect.code');
     }
 
-    public function getToken()
+    /**
+     * get 方式
+     * @return mixed
+     */
+    public function get()
     {
-
+        $response = (new Client())->get(
+            $this->request_url
+        );
+        return json_decode($response->getBody());
     }
 
+    public function post()
+    {
+        $response = (new Client(['base_url' => $this->request_url]))->request();
+    }
 
+    public function put()
+    {
+        $response = (new Client(['base_url' => $this->request_url]))->request();
+    }
 
-
-
-
-
+    public function delete()
+    {
+        $response = (new Client(['base_url' => $this->request_url]))->request();
+    }
 }
